@@ -1,0 +1,8 @@
+name = "The Fate of Iberia"
+path = "dlc/dlc005_fp2"
+steam_id = "1303184"
+pops_id = "ck3_dlc005_fp2"
+msgr_id = "9PBZ92STFNS0"
+affects_checksum = yes
+localizable_name = "DLC005_FP2"
+checksum = "82a8615d2264f573d13e45ea186e7aca"

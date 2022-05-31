@@ -4,7 +4,7 @@
 #define GameName "Crusader Kings 3"                                          ; Название игры
 #define GameNameDash "Crusader-Kings-3"                                          ; Название игры без пробелов
 #define GameNameEXE "ck3"                                                              ; Название exe файла игры
-#define GameVer "1.5"                                                                     ; Версия игры
+#define GameVer "1.6"                                                                     ; Версия игры
 #define GameAppIdSteam "1158310"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Crusader Kings 3"                                     ; Описание программы
