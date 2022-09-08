@@ -4,14 +4,14 @@
 #define GameName "Crusader Kings 3"                                          ; Название игры
 #define GameNameDash "Crusader-Kings-3"                                          ; Название игры без пробелов
 #define GameNameEXE "ck3"                                                              ; Название exe файла игры
-#define GameVer "1.6"                                                                     ; Версия игры
+#define GameVer "1.7"                                                                     ; Версия игры
 #define GameAppIdSteam "1158310"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Crusader Kings 3"                                     ; Описание программы
 #define Typ "DLC"                                                                    ; Тип приложения
 ; Практически никогда не меняется
 #define AppVer "1"                                                                        ; Версия установщика
-#define Platz "D:\$RECYCLE.BIN\Bibliothek\Dokument\GitHub"                                                    ; Место
+#define Platz "C:\Users\TeMeR\Documents\GitHub\"                                                    ; Место
 ; Константы
 #define Copyright "Folk"                                                                  ; (констант)Копирайт
 #define AppPublisher "Russifiers for Humans"                                              ; (констант)Название инициативы

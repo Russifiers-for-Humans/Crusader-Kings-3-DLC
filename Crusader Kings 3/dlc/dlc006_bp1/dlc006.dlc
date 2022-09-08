@@ -1,0 +1,8 @@
+name = "Friends and Foes"
+path = "dlc/dlc006_bp1"
+steam_id = "2114760"
+pops_id = "ck3_dlc006_bp1"
+msgr_id = "9P37T515L87H"
+affects_checksum = yes
+localizable_name = "DLC006_BP1"
+checksum = "57fb2b964213aacb8afed31632ddc7e2"
