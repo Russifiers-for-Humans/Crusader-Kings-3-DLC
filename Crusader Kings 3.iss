@@ -4,13 +4,13 @@
 #define GameName "Crusader Kings 3"                                          ; Название игры
 #define GameNameDash "Crusader-Kings-3"                                          ; Название игры без пробелов
 #define GameNameEXE "ck3"                                                              ; Название exe файла игры
-#define GameVer "1.7"                                                                     ; Версия игры
+#define GameVer "1.9"                                                                     ; Версия игры
 #define GameAppIdSteam "1158310"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Crusader Kings 3"                                     ; Описание программы
 #define Typ "DLC"                                                                    ; Тип приложения
 ; Практически никогда не меняется
-#define AppVer "1"                                                                        ; Версия установщика
+#define AppVer "2"                                                                        ; Версия установщика
 #define Platz "C:\Users\TeMeR\Documents\GitHub\"                                                    ; Место
 ; Константы
 #define Copyright "Folk"                                                                  ; (констант)Копирайт
@@ -23,6 +23,9 @@
 #define OriginalNameSetup Typ + "-" + GameNameDash                        ; Оригинальное наименование приложения
 #define AppNameAndDescript GameName + " - " + AppDescription                              ; Название программы и описание
 #define ProductVerName AppNameAndDescript + " версии " + GameVer                             ; Название программы для какой версии игры в системе
+
+#define UnArcivProg "7zG.EXE"
+#define FolderUnArcivProg "7z"
 
 [Setup]
 ;Номер приложения для его удаление лучше все время не забывать разный совать. Проверка уникальный для: Crusader Kings 3 DLC
@@ -88,13 +91,30 @@ WizardImageFile={#Location}\Pic.bmp
 WizardSmallImageFile={#Location}\Pic.bmp
 
 [Components]
-Name: "dlc"; Description: "DLC"; Flags: checkablealone; Types: full
-Name: "crack"; Description: "Crack"; Flags: checkablealone; Types: full
+Name: "crack"; Description: "Crack"; Flags: checkablealone; Types: full compact
+Name: "dlc"; Description: "DLC";                                Flags: checkablealone; Types: full
+Name: "dlc\001"; Description: "Garments of the Holy Roman Empire";    Flags: checkablealone; Types: full compact
+Name: "dlc\002"; Description: "Fashion of the Abbasid Court";       Flags: checkablealone; Types: full compact
+Name: "dlc\003"; Description: "The Northern Lords";      Flags: checkablealone; Types: full compact
+Name: "dlc\004"; Description: "The Royal Court";   Flags: checkablealone; Types: full compact
+Name: "dlc\005"; Description: "The Fate of Iberia";       Flags: checkablealone; Types: full compact
+Name: "dlc\006"; Description: "Friends and Foes";       Flags: checkablealone; Types: full compact
+Name: "dlc\007"; Description: "Tours and Tournaments";       Flags: checkablealone; Types: full compact
+Name: "dlc\008"; Description: "Elegance of the Empire";       Flags: checkablealone; Types: full compact
 
 [Files]
-; Ресурсы
-Source: {#Location}\{#GameName}\dlc\*; DestDir: "{app}\game\dlc"; Components: dlc; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: {#Location}\{#GameName}\crack\*; DestDir: "{app}\binaries"; Components: crack; Flags: ignoreversion recursesubdirs createallsubdirs
+; Ресурсы  ExternalSize - cmd dir
+Source: {#Location}\{#FolderUnArcivProg}\*; DestDir: "{tmp}"; Flags: deleteafterinstall
+Source: "{tmp}\crack.zip";                                  DestDir: "{tmp}"; Components: crack;   Flags: external deleteafterinstall; ExternalSize:  478133
+Source: "{tmp}\dlc001_preorder.zip";     DestDir: "{tmp}"; Components: dlc\001; Flags: external deleteafterinstall; ExternalSize: 85302
+Source: "{tmp}\dlc002_sp_day1.zip";             DestDir: "{tmp}"; Components: dlc\002; Flags: external deleteafterinstall; ExternalSize:  65778
+Source: "{tmp}\dlc003_fp1.zip";       DestDir: "{tmp}"; Components: dlc\003; Flags: external deleteafterinstall; ExternalSize: 34650660
+Source: "{tmp}\dlc004_ep1.zip";    DestDir: "{tmp}"; Components: dlc\004; Flags: external deleteafterinstall; ExternalSize:  44751283
+Source: "{tmp}\dlc005_fp2.zip";        DestDir: "{tmp}"; Components: dlc\005; Flags: external deleteafterinstall; ExternalSize:  8482793
+Source: "{tmp}\dlc006_bp1.zip";        DestDir: "{tmp}"; Components: dlc\006; Flags: external deleteafterinstall; ExternalSize:  9443596
+Source: "{tmp}\dlc007_ep2.zip";        DestDir: "{tmp}"; Components: dlc\007; Flags: external deleteafterinstall; ExternalSize:  38969184
+Source: "{tmp}\dlc008_sp2.zip";        DestDir: "{tmp}"; Components: dlc\008; Flags: external deleteafterinstall; ExternalSize:  80847
+
 [Icons]
 ;Ярлык
 Name: "{userprograms}\{#AppPublisher}\{#GameName}\{cm:ProgramOnTheWeb,{#ProductVerName}}"; Filename: "{#AppURL}"
@@ -107,6 +127,38 @@ Name: "{userdesktop}\Switcher Spacewar for {#GameName}"; Filename: "{app}\binari
 
 [Tasks]
 Name: "DesktopIcon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Components: crack
+
+[Run]
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\crack.zip -y -o""{app}\binaries\""";                                       Components: crack  
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc001_preorder.zip  -y -o""{app}\game\dlc\""";        Components: dlc\001
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc002_sp_day1.zip  -y -o""{app}\game\dlc\""";        Components: dlc\002
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc003_fp1.zip  -y -o""{app}\game\dlc\""";        Components: dlc\003
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc004_ep1.zip  -y -o""{app}\game\dlc\""";        Components: dlc\004
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc005_fp2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\005
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc006_bp1.zip  -y -o""{app}\game\dlc\""";        Components: dlc\006
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc007_ep2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\007
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc008_sp2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\008
+
+[UninstallDelete]
+Type: files; 		  Name: "{app}\binaries\cream_api.ini";                                   Components: crack  
+Type: files; 		  Name: "{app}\binaries\Emulator64.dll";                                  Components: crack  
+Type: files; 		  Name: "{app}\binaries\LinkNeverDie_Com_64.dll";                         Components: crack  
+Type: files; 		  Name: "{app}\binaries\steam_api64.dll";                                 Components: crack  
+Type: files; 		  Name: "{app}\binaries\steam_api64_org_game.dll";                        Components: crack  
+Type: files; 		  Name: "{app}\binaries\steam_api64_org_launcher.dll";                    Components: crack  
+Type: files; 		  Name: "{app}\binaries\SWconfig.ini";                                    Components: crack  
+Type: files; 		  Name: "{app}\binaries\Switcher Spacewar.exe";                           Components: crack  
+;Type: files; 		  Name: "{app}\EOSSDK-Win64-Shipping.dll";                       Components: crack  
+;Type: files; 		  Name: "{app}\EOSSDK-Win64-Shipping_o.dll";                     Components: crack  
+;Type: files; 		  Name: "{app}\ScreamAPI.json";                                  Components: crack  
+Type: filesandordirs; Name: "{app}\game\dlc\dlc001_preorder";      Components: dlc\001
+Type: filesandordirs; Name: "{app}\game\dlc\dlc002_sp_day1";              Components: dlc\002
+Type: filesandordirs; Name: "{app}\game\dlc\dlc003_fp1";        Components: dlc\003
+Type: filesandordirs; Name: "{app}\game\dlc\dlc004_ep1";     Components: dlc\004
+Type: filesandordirs; Name: "{app}\game\dlc\dlc005_fp2";         Components: dlc\005
+Type: filesandordirs; Name: "{app}\game\dlc\dlc006_bp1";         Components: dlc\006
+Type: filesandordirs; Name: "{app}\game\dlc\dlc007_ep2";         Components: dlc\007
+Type: filesandordirs; Name: "{app}\game\dlc\dlc008_sp2";         Components: dlc\008
 
 [Code]
 var
@@ -136,5 +188,71 @@ begin
   Result := InstallationPath;
 end;
 
+//Downloader
+var
+  DownloadPage: TDownloadWizardPage;
+
+function OnDownloadProgress(const Url, FileName: String; const Progress, ProgressMax: Int64): Boolean;
+begin
+  if Progress = ProgressMax then
+    Log(Format('Successfully downloaded file to {tmp}: %s', [FileName]));
+  Result := True;
+end;
+
+procedure InitializeWizard;
+begin
+  DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
+end;
+function NextButtonClick(CurPageID: Integer): Boolean;
+begin
+  if CurPageID = wpReady then begin
+    DownloadPage.Clear;// sha256 7z
+	if IsComponentSelected('crack') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/crack.zip', 'crack.zip', '2df43bd616f39b0eb971dd503e518cf6c89ae24d19f94c51c8120793bf9e8e24');
+    end;
+  if IsComponentSelected('dlc/001') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc001_preorder.zip', 'dlc001_preorder.zip', 'f121fd9b3a3b98d06e3835ace06f10c32ca751b3d63912804df32b224522524b');
+    end;
+	if IsComponentSelected('dlc/002') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc002_sp_day1.zip', 'dlc002_sp_day1.zip', '8905e7f40cf258c8b655e3aaad0bcc3e6e1d1c84fb88e768bfac723338f8afde');
+    end;
+	if IsComponentSelected('dlc/003') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc003_fp1.zip', 'dlc003_fp1.zip', '5739a07daed1fe765a2f4530754a7eaaa753e6f43db953e704badf939cd4650f');
+    end;
+	if IsComponentSelected('dlc/004') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc004_ep1.zip', 'dlc004_ep1.zip', '1ab64e2df96a2bd9cf428c87fd947f3cc254cb216c34e192f29a88568f0d4aa2');
+    end;
+	if IsComponentSelected('dlc/005') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc005_fp2.zip', 'dlc005_fp2.zip', '6510319df102f983402b205e021bc95b25f5b9a941c71a04cd9b9ffd63af2fcc');
+    end;
+	if IsComponentSelected('dlc/006') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc006_bp1.zip', 'dlc006_bp1.zip', '3a99766021e113df68c52bf37fc018627c66867beb8ae0d4de098d650e02672e');
+    end;
+	if IsComponentSelected('dlc/007') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc007_ep2.zip', 'dlc007_ep2.zip', '8a38e895fbc0208b1337f973ddd3c64a5f8eb305b2fd9e39e6e2b02c7b702323');
+    end;
+	if IsComponentSelected('dlc/008') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc008_sp2.zip', 'dlc008_sp2.zip', '4f9e2a349ace1b64477e5a34a10af3eee41e98b0915ebaaf6fd007d7c27e090e');
+    end;
+    DownloadPage.Show;
+    try
+      try
+        DownloadPage.Download; // This downloads the files to {tmp}
+        Result := True;
+      except
+        if DownloadPage.AbortedByUser then
+          Log('Aborted by user.')
+        else
+          SuppressibleMsgBox(AddPeriod(GetExceptionMessage), mbCriticalError, MB_OK, IDOK);
+        Result := False;
+      end;
+    finally
+      DownloadPage.Hide;
+    end;
+  end else
+    Result := True;
+end;
+
 [Languages]
 Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl";
+Name: "english"; MessagesFile: "compiler:Default.isl";

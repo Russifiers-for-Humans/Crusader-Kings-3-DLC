@@ -1,6 +1,0 @@
-﻿##### MAINTHEME
-
-main_theme_track_roco  = {
-	music = "event:/DLC/EP1/MX/Maintheme/mx_mep1_maintheme"
-	can_be_interrupted = yes
-}

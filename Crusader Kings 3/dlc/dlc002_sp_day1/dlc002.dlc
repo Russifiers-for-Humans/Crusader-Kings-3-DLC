@@ -1,8 +1,0 @@
-name = "Fashion of the Abbasid Court"
-path = "dlc/dlc002_sp_day1"
-steam_id = "1296731"
-pops_id = "ck3_dlc002_sp_day1"
-msgr_id = "9NSL78KTTM4X"
-affects_checksum = yes
-localizable_name = "DLC002_SP_DAY1"
-checksum = "2c7446d3aa4e4975fac3b350b82642c9"

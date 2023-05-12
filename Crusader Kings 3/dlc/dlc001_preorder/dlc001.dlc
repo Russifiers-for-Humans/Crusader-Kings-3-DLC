@@ -1,8 +1,0 @@
-name = "Garments of the Holy Roman Empire"
-path = "dlc/dlc001_preorder"
-steam_id = "1296730"
-pops_id = "ck3_dlc001_preorder"
-msgr_id = "9NMFCFSZSHQT"
-affects_checksum = yes
-localizable_name = "DLC001_PREORDER"
-checksum = "629598a5a0314cefa28e263d04c6e96d"

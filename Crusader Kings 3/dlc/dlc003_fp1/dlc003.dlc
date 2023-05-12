@@ -1,8 +1,0 @@
-name = "The Northern Lords"
-path = "dlc/dlc003_fp1"
-steam_id = "1303183"
-pops_id = "ck3_dlc003_fp1"
-msgr_id = "9MTWRN8XTRN0"
-affects_checksum = yes
-localizable_name = "DLC003_FP1"
-checksum = "995bb20b30c63134400da268c6d6eab2"
