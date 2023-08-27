@@ -4,7 +4,7 @@
 #define GameName "Crusader Kings 3"                                          ; Название игры
 #define GameNameDash "Crusader-Kings-3"                                          ; Название игры без пробелов
 #define GameNameEXE "ck3"                                                              ; Название exe файла игры
-#define GameVer "1.9"                                                                     ; Версия игры
+#define GameVer "1.10"                                                                     ; Версия игры
 #define GameAppIdSteam "1158310"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Crusader Kings 3"                                     ; Описание программы
@@ -101,6 +101,7 @@ Name: "dlc\005"; Description: "The Fate of Iberia";       Flags: checkablealone;
 Name: "dlc\006"; Description: "Friends and Foes";       Flags: checkablealone; Types: full compact
 Name: "dlc\007"; Description: "Tours and Tournaments";       Flags: checkablealone; Types: full compact
 Name: "dlc\008"; Description: "Elegance of the Empire";       Flags: checkablealone; Types: full compact
+Name: "dlc\009"; Description: "Wards and Wardens";       Flags: checkablealone; Types: full compact
 
 [Files]
 ; Ресурсы  ExternalSize - cmd dir
@@ -109,11 +110,12 @@ Source: "{tmp}\crack.zip";                                  DestDir: "{tmp}"; Co
 Source: "{tmp}\dlc001_preorder.zip";     DestDir: "{tmp}"; Components: dlc\001; Flags: external deleteafterinstall; ExternalSize: 85302
 Source: "{tmp}\dlc002_sp_day1.zip";             DestDir: "{tmp}"; Components: dlc\002; Flags: external deleteafterinstall; ExternalSize:  65778
 Source: "{tmp}\dlc003_fp1.zip";       DestDir: "{tmp}"; Components: dlc\003; Flags: external deleteafterinstall; ExternalSize: 34650660
-Source: "{tmp}\dlc004_ep1.zip";    DestDir: "{tmp}"; Components: dlc\004; Flags: external deleteafterinstall; ExternalSize:  44751283
+Source: "{tmp}\dlc004_ep1.zip";    DestDir: "{tmp}"; Components: dlc\004; Flags: external deleteafterinstall; ExternalSize:  44750958
 Source: "{tmp}\dlc005_fp2.zip";        DestDir: "{tmp}"; Components: dlc\005; Flags: external deleteafterinstall; ExternalSize:  8482793
 Source: "{tmp}\dlc006_bp1.zip";        DestDir: "{tmp}"; Components: dlc\006; Flags: external deleteafterinstall; ExternalSize:  9443596
 Source: "{tmp}\dlc007_ep2.zip";        DestDir: "{tmp}"; Components: dlc\007; Flags: external deleteafterinstall; ExternalSize:  38969184
-Source: "{tmp}\dlc008_sp2.zip";        DestDir: "{tmp}"; Components: dlc\008; Flags: external deleteafterinstall; ExternalSize:  80847
+Source: "{tmp}\dlc008_sp2.zip";        DestDir: "{tmp}"; Components: dlc\008; Flags: external deleteafterinstall; ExternalSize:  80844
+Source: "{tmp}\dlc009_bp2.zip";        DestDir: "{tmp}"; Components: dlc\009; Flags: external deleteafterinstall; ExternalSize:  17622893
 
 [Icons]
 ;Ярлык
@@ -138,6 +140,7 @@ Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc005_fp2.zip  -y -o""{a
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc006_bp1.zip  -y -o""{app}\game\dlc\""";        Components: dlc\006
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc007_ep2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\007
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc008_sp2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\008
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc009_bp2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\009
 
 [UninstallDelete]
 Type: files; 		  Name: "{app}\binaries\cream_api.ini";                                   Components: crack  
@@ -159,6 +162,7 @@ Type: filesandordirs; Name: "{app}\game\dlc\dlc005_fp2";         Components: dlc
 Type: filesandordirs; Name: "{app}\game\dlc\dlc006_bp1";         Components: dlc\006
 Type: filesandordirs; Name: "{app}\game\dlc\dlc007_ep2";         Components: dlc\007
 Type: filesandordirs; Name: "{app}\game\dlc\dlc008_sp2";         Components: dlc\008
+Type: filesandordirs; Name: "{app}\game\dlc\dlc009_bp2";         Components: dlc\009
 
 [Code]
 var
@@ -220,7 +224,7 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc003_fp1.zip', 'dlc003_fp1.zip', '5739a07daed1fe765a2f4530754a7eaaa753e6f43db953e704badf939cd4650f');
     end;
 	if IsComponentSelected('dlc/004') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc004_ep1.zip', 'dlc004_ep1.zip', '1ab64e2df96a2bd9cf428c87fd947f3cc254cb216c34e192f29a88568f0d4aa2');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.10/dlc004_ep1.zip', 'dlc004_ep1.zip', '25eefdc2e82052ba5463d4e955a46b4eb8d201e44cf5f15faeb35294f3322a6e');
     end;
 	if IsComponentSelected('dlc/005') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc005_fp2.zip', 'dlc005_fp2.zip', '6510319df102f983402b205e021bc95b25f5b9a941c71a04cd9b9ffd63af2fcc');
@@ -232,7 +236,10 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc007_ep2.zip', 'dlc007_ep2.zip', '8a38e895fbc0208b1337f973ddd3c64a5f8eb305b2fd9e39e6e2b02c7b702323');
     end;
 	if IsComponentSelected('dlc/008') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc008_sp2.zip', 'dlc008_sp2.zip', '4f9e2a349ace1b64477e5a34a10af3eee41e98b0915ebaaf6fd007d7c27e090e');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.10/dlc008_sp2.zip', 'dlc008_sp2.zip', '0ceaf94be86a080c780f5bf838eb72310156948e027baf95559e5f3372483a4d');
+    end;
+	if IsComponentSelected('dlc/009') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.10/dlc009_bp2.zip', 'dlc009_bp2.zip', '65492983c1d988fea4026b9e8ba367082ae4a9b39ae763cc7c8a43d6de7f6bee');
     end;
     DownloadPage.Show;
     try
