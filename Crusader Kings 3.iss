@@ -4,7 +4,7 @@
 #define GameName "Crusader Kings 3"                                          ; Название игры
 #define GameNameDash "Crusader-Kings-3"                                          ; Название игры без пробелов
 #define GameNameEXE "ck3"                                                              ; Название exe файла игры
-#define GameVer "1.11"                                                                     ; Версия игры
+#define GameVer "1.11.5"                                                                     ; Версия игры
 #define GameAppIdSteam "1158310"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Crusader Kings 3"                                     ; Описание программы
@@ -103,6 +103,9 @@ Name: "dlc\007"; Description: "Tours and Tournaments";       Flags: checkablealo
 Name: "dlc\008"; Description: "Elegance of the Empire";       Flags: checkablealone; Types: full compact
 Name: "dlc\009"; Description: "Wards and Wardens";       Flags: checkablealone; Types: full compact
 Name: "dlc\010"; Description: "Legacy of Persia";       Flags: checkablealone; Types: full compact
+;Name: "dlc\011"; Description: "";       Flags: checkablealone; Types: full compact
+Name: "dlc\012"; Description: "North African Attire";       Flags: checkablealone; Types: full compact
+Name: "dlc\013"; Description: "Couture of the Capets";       Flags: checkablealone; Types: full compact
 
 [Files]
 ; Ресурсы  ExternalSize - cmd dir
@@ -118,6 +121,9 @@ Source: "{tmp}\dlc007_ep2.zip";        DestDir: "{tmp}"; Components: dlc\007; Fl
 Source: "{tmp}\dlc008_sp2.zip";        DestDir: "{tmp}"; Components: dlc\008; Flags: external deleteafterinstall; ExternalSize:  80844
 Source: "{tmp}\dlc009_bp2.zip";        DestDir: "{tmp}"; Components: dlc\009; Flags: external deleteafterinstall; ExternalSize:  17622893
 Source: "{tmp}\dlc010_fp3.zip";        DestDir: "{tmp}"; Components: dlc\010; Flags: external deleteafterinstall; ExternalSize:  14719999
+;Source: "{tmp}\dlc011_.zip";        DestDir: "{tmp}"; Components: dlc\011; Flags: external deleteafterinstall; ExternalSize:  14719999
+Source: "{tmp}\dlc012_afr.zip";        DestDir: "{tmp}"; Components: dlc\012; Flags: external deleteafterinstall; ExternalSize:  100913
+Source: "{tmp}\dlc013_sp3.zip";        DestDir: "{tmp}"; Components: dlc\013; Flags: external deleteafterinstall; ExternalSize:  64844
 
 [Icons]
 ;Ярлык
@@ -144,6 +150,9 @@ Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc007_ep2.zip  -y -o""{a
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc008_sp2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\008
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc009_bp2.zip  -y -o""{app}\game\dlc\""";        Components: dlc\009
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc010_fp3.zip  -y -o""{app}\game\dlc\""";        Components: dlc\010
+;Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc011.zip  -y -o""{app}\game\dlc\""";        Components: dlc\011
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc012_afr.zip  -y -o""{app}\game\dlc\""";        Components: dlc\012
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc013_sp3.zip  -y -o""{app}\game\dlc\""";        Components: dlc\013
 
 [UninstallDelete]
 Type: files; 		  Name: "{app}\binaries\cream_api.ini";                                   Components: crack  
@@ -167,6 +176,9 @@ Type: filesandordirs; Name: "{app}\game\dlc\dlc007_ep2";         Components: dlc
 Type: filesandordirs; Name: "{app}\game\dlc\dlc008_sp2";         Components: dlc\008
 Type: filesandordirs; Name: "{app}\game\dlc\dlc009_bp2";         Components: dlc\009
 Type: filesandordirs; Name: "{app}\game\dlc\dlc010_fp3";         Components: dlc\010
+;Type: filesandordirs; Name: "{app}\game\dlc\dlc011";         Components: dlc\011
+Type: filesandordirs; Name: "{app}\game\dlc\dlc012_afr";         Components: dlc\012
+Type: filesandordirs; Name: "{app}\game\dlc\dlc013_sp3";         Components: dlc\013
 
 [Code]
 var
@@ -216,7 +228,7 @@ begin
   if CurPageID = wpReady then begin
     DownloadPage.Clear;// sha256 7z
 	if IsComponentSelected('crack') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/crack.zip', 'crack.zip', '2df43bd616f39b0eb971dd503e518cf6c89ae24d19f94c51c8120793bf9e8e24');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.11.5/crack.zip', 'crack.zip', '5d0bc87e1761ae7d47824df50ac03fabb5e1c37ceb36ecebc7c83a216db5630a');
     end;
   if IsComponentSelected('dlc/001') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc001_preorder.zip', 'dlc001_preorder.zip', 'f121fd9b3a3b98d06e3835ace06f10c32ca751b3d63912804df32b224522524b');
@@ -247,6 +259,13 @@ begin
     end;
 	if IsComponentSelected('dlc/010') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.11/dlc010_fp3.zip', 'dlc010_fp3.zip', '851a19db2dcbbbde49813962dcbfd51f82a8be66a6778d284d97f0c2a08fa772');
+    end;
+
+ 	if IsComponentSelected('dlc/012') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.11.5/dlc012_afr.zip', 'dlc012_afr.zip', '15f6abe095702e50192ef359eb3f834d1936bebc4e98c579599d03991042a8e6');
+    end;
+ 	if IsComponentSelected('dlc/013') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.11.5/dlc013_sp3.zip', 'dlc013_sp3.zip', '487d5768fd3d84940cb76999cf104f8e5225fd299a210e3a80068e406cad3307');
     end;
     DownloadPage.Show;
     try
