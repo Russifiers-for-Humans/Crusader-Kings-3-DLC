@@ -4,7 +4,7 @@
 #define GameName "Crusader Kings 3"                                          ; Название игры
 #define GameNameDash "Crusader-Kings-3"                                          ; Название игры без пробелов
 #define GameNameEXE "ck3"                                                              ; Название exe файла игры
-#define GameVer "1.13.2"                                                                     ; Версия игры
+#define GameVer "1.14.0"                                                                     ; Версия игры
 #define GameAppIdSteam "1158310"                                                             ; Ид игры в стиме
 ; От ситуации зависит
 #define AppDescription "DLC для Crusader Kings 3"                                     ; Описание программы
@@ -107,6 +107,7 @@ Name: "dlc\011"; Description: "Legends of the Dead";       Flags: checkablealone
 Name: "dlc\012"; Description: "North African Attire";       Flags: checkablealone; Types: full compact
 Name: "dlc\013"; Description: "Couture of the Capets";       Flags: checkablealone; Types: full compact
 Name: "dlc\014"; Description: "Roads to Power";       Flags: checkablealone; Types: full compact
+Name: "dlc\015"; Description: "Wandering Nobles";       Flags: checkablealone; Types: full compact
 
 [Files]
 ; Ресурсы  ExternalSize - cmd dir
@@ -126,6 +127,7 @@ Source: "{tmp}\dlc011_ce1.zip";             DestDir: "{tmp}"; Components: dlc\01
 Source: "{tmp}\dlc012_afr.zip";             DestDir: "{tmp}"; Components: dlc\012; Flags: external deleteafterinstall; ExternalSize: 100913
 Source: "{tmp}\dlc013_sp3.zip";             DestDir: "{tmp}"; Components: dlc\013; Flags: external deleteafterinstall; ExternalSize: 64844
 Source: "{tmp}\dlc014_ep3.zip";             DestDir: "{tmp}"; Components: dlc\014; Flags: external deleteafterinstall; ExternalSize: 19800467
+Source: "{tmp}\dlc015_bp3.zip";             DestDir: "{tmp}"; Components: dlc\015; Flags: external deleteafterinstall; ExternalSize: 83285
 
 [Icons]
 ;Ярлык
@@ -156,6 +158,7 @@ Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc011_ce1.zip  -y -o""{a
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc012_afr.zip  -y -o""{app}\game\dlc\""";        Components: dlc\012
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc013_sp3.zip  -y -o""{app}\game\dlc\""";        Components: dlc\013
 Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc014_ep3.zip  -y -o""{app}\game\dlc\""";        Components: dlc\014
+Filename: "{tmp}\{#UnArcivProg}"; Parameters: "x {tmp}\dlc015_bp3.zip  -y -o""{app}\game\dlc\""";        Components: dlc\015
 
 [UninstallDelete]
 Type: files; 		  Name: "{app}\binaries\cream_api.ini";                                   Components: crack  
@@ -183,6 +186,7 @@ Type: filesandordirs; Name: "{app}\game\dlc\dlc011_ce1";         Components: dlc
 Type: filesandordirs; Name: "{app}\game\dlc\dlc012_afr";         Components: dlc\012
 Type: filesandordirs; Name: "{app}\game\dlc\dlc013_sp3";         Components: dlc\013
 Type: filesandordirs; Name: "{app}\game\dlc\dlc014_ep3";         Components: dlc\014
+Type: filesandordirs; Name: "{app}\game\dlc\dlc015_bp3";         Components: dlc\015
 
 [Code]
 var
@@ -241,19 +245,19 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.9/dlc002_sp_day1.zip', 'dlc002_sp_day1.zip', '8905e7f40cf258c8b655e3aaad0bcc3e6e1d1c84fb88e768bfac723338f8afde');
     end;
 	if IsComponentSelected('dlc/003') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc003_fp1.zip', 'dlc003_fp1.zip', '3db466c74faf3d9aafb15312fdee356085e45ccd83f13f20ae9e89dd175bd83b');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc003_fp1.zip', 'dlc003_fp1.zip', 'd6ab4d9bd5bd6eacd30130ade7f3ed998427e053697d1d326a049df29252b55e');
     end;
 	if IsComponentSelected('dlc/004') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc004_ep1.zip', 'dlc004_ep1.zip', 'c5b5e73d1aa9b36f3c8ead8228a5a5b6184adfdae8772bdcd1cac79fdbd3de8c');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc004_ep1.zip', 'dlc004_ep1.zip', 'd239f865e9282de0a28af19e3729a9c4ce81ece6b3a2ed971b8eb6d23f2df948');
     end;
 	if IsComponentSelected('dlc/005') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc005_fp2.zip', 'dlc005_fp2.zip', '0e1ba9bb58956121d5dcded935a7ff04b37231176ac696d63ff5418242c72b17');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc005_fp2.zip', 'dlc005_fp2.zip', 'a6688ff12f3484b6038b60c8c9551792c7c434d233bc7a78cd8d2a0832b3c56d');
     end;
 	if IsComponentSelected('dlc/006') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc006_bp1.zip', 'dlc006_bp1.zip', '8042c676676a09c452fe1441da9c3f1e5f1e1bce6a1b214b24f4a439cbe64eb8');
     end;
 	if IsComponentSelected('dlc/007') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc007_ep2.zip', 'dlc007_ep2.zip', '5c19e3d8436e9b3da4e6a727101515a8862aba9a6d8117d7c837ac57e1c95f52');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc007_ep2.zip', 'dlc007_ep2.zip', '491858e4332c8c78ed4c5fdc6259947a820be01dfcf86ecad8d1643e75b20d9a');
     end;
 	if IsComponentSelected('dlc/008') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.10/dlc008_sp2.zip', 'dlc008_sp2.zip', '0ceaf94be86a080c780f5bf838eb72310156948e027baf95559e5f3372483a4d');
@@ -262,10 +266,10 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc009_bp2.zip', 'dlc009_bp2.zip', '4cadf1bfa40b965b1b02ec08bed2b38956ce069e2df446f982d3654cfe876345');
     end;
 	if IsComponentSelected('dlc/010') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc010_fp3.zip', 'dlc010_fp3.zip', 'a93c5f2ddb6db3247837349ccdfb6d1c6cc7d549c4a8fbadfcb847839a2f4903');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc010_fp3.zip', 'dlc010_fp3.zip', '3e70398362bbc127bdcb44c52c2dc282b1bd5b1b4287973cd48ddd72134c5f39');
     end;
 	if IsComponentSelected('dlc/011') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc011_ce1.zip', 'dlc011_ce1.zip', 'c9ea6b2779f060124afadb2cfc39399d641218ee1ff9b46c312ac3d04bef05ca');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc011_ce1.zip', 'dlc011_ce1.zip', '4717c5a27660a4f2ec19e6817c3c7abec9ad21bea32de500323abb9d06a7bc90');
     end;
  	if IsComponentSelected('dlc/012') then begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.11.5/dlc012_afr.zip', 'dlc012_afr.zip', '15f6abe095702e50192ef359eb3f834d1936bebc4e98c579599d03991042a8e6');
@@ -274,7 +278,10 @@ begin
       DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.11.5/dlc013_sp3.zip', 'dlc013_sp3.zip', '487d5768fd3d84940cb76999cf104f8e5225fd299a210e3a80068e406cad3307');
     end;
   if IsComponentSelected('dlc/014') then begin
-      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.13.2/dlc014_ep3.zip', 'dlc014_ep3.zip', '6d32e76a0103de11895e1bf31c86f91f23ab4e26d0ef4c5ff5bb96acb1022b55');
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc014_ep3.zip', 'dlc014_ep3.zip', 'b7ad3a44bc58f39d5ae9e67e51d78ccc4ce53e2a2fc246086f03b65eaf1e4015');
+    end;
+  if IsComponentSelected('dlc/015') then begin
+      DownloadPage.Add('https://github.com/Russifiers-for-Humans/Crusader-Kings-3-DLC/releases/download/1.14.0/dlc015_bp3.zip', 'dlc015_bp3.zip', 'c04884c639af1f5ffd4b09aefd86bacef8b4ecd4a5cda106957d0a60e9f52641');
     end;
     DownloadPage.Show;
     try
